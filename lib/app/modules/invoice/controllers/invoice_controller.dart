@@ -16,7 +16,6 @@ class InvoiceController extends GetxController {
   var exprireddate = ''.obs;
   var payment = ''.obs;
   var membership = ''.obs;
-  
 
   var isFormSubmitted = false.obs;
   // var selectedDate = ''.obs;
@@ -32,14 +31,14 @@ class InvoiceController extends GetxController {
       final formattedDate = DateFormat('yyyy-MM-dd').format(picked);
       dateofbirth.value = formattedDate;
     }
-   }
-   
-   Future<void> selectExpiredDate(BuildContext context) async {
+  }
+
+  Future<void> selectExpiredDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(21000),
     );
 
     if (picked != null) {
@@ -47,9 +46,9 @@ class InvoiceController extends GetxController {
       final formattedDate = DateFormat('yyyy-MM-dd').format(experieddate);
       exprireddate.value = formattedDate;
     }
-   }
+  }
 
-    RxString calculateAge() {
+  RxString calculateAge() {
     if (dateofbirth.value.isNotEmpty) {
       DateTime dob = DateFormat('yyyy-MM-dd').parse(dateofbirth.value);
       DateTime now = DateTime.now();
@@ -58,33 +57,46 @@ class InvoiceController extends GetxController {
       int monthDob = dob.month;
       if (monthNow < monthDob || (monthNow == monthDob && now.day < dob.day)) {
         age--;
-      } 
+      }
       return age.toString().obs;
     }
     return ''.obs;
   }
 
   void toggleMembership(String membershipValue) {
-   membership.value = membershipValue;
-   if (membership == "Reguler") {
-     harga.value = "50000";
-     benefits.value = "Anggota 1 Bulan";
-   } else if (membership == "Gold") {
-    harga.value = "150000";
-    benefits.value = "Anggota 1 Bulan + cemilan gratis";
-   } else if (membership == "Platinum") {
-    harga.value = "250000";
-    benefits.value = "Anggota 2 Bulan + Free Wifi";
-   } else if (membership == "Vip") {
-    harga.value = "500000" ;
-    benefits.value = "Anggota 3 Bulan + Free Wifi + Tiket Konser";
-   }
+    membership.value = membershipValue;
+    if (membership == "Reguler") {
+      harga.value = "50000";
+      benefits.value = "Anggota 1 Bulan";
+    } else if (membership == "Gold") {
+      harga.value = "150000";
+      benefits.value = "Anggota 1 Bulan + cemilan gratis";
+    } else if (membership == "Platinum") {
+      harga.value = "250000";
+      benefits.value = "Anggota 2 Bulan + Free Wifi";
+    } else if (membership == "Vip") {
+      harga.value = "500000";
+      benefits.value = "Anggota 3 Bulan + Free Wifi + Tiket Konser";
+    }
+  }
+
+  void resetData() {
+    fullname.value = '';
+    placeofbirth.value = '';
+    dateofbirth.value = '';
+    gender.value = '';
+    email.value = '';
+    nationality.value = '';
+    membership.value = '';
+    cardnumber.value = '';
+    exprireddate.value = '';
+    harga.value = '';
+    benefits.value = '';
   }
 
   void submitForm() {
     print(
         'Data formulir: $fullname, $placeofbirth, $dateofbirth, $gender, $email, $nationality, $exprireddate, ${membership.value}, ${harga.value}, ${benefits.value}');
     isFormSubmitted.value = true;
-    
   }
 }

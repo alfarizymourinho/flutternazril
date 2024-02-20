@@ -1,3 +1,4 @@
+import 'package:belajar_getx/app/modules/invoice/views/invoice_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/invoice_controller.dart';
@@ -56,7 +57,13 @@ class OutPut extends StatelessWidget {
                 ListTile(
                   title: Text('Benefits : ${invoice.benefits.value} '),
                 ),
-                
+                 ElevatedButton(
+                      onPressed: () {
+                        invoice.resetData();
+                        Get.to(InvoiceView());
+                      },
+                      child: Text("Reset and Back"),
+                    ),
               ],
             ),
           ),
