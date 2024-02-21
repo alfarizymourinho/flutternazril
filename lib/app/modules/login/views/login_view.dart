@@ -56,20 +56,7 @@ class LoginView extends GetView<LoginController> {
                               },
                             ),
 
-                            SizedBox(height: 18),
-                            TextFormField(
-                              onChanged: controller.onEmailChanged,
-                              decoration: InputDecoration(
-                                hintText: "Email",
-                                border: OutlineInputBorder(),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'Input Email';
-                                }
-                                return null;
-                              },
-                            ),
+                            
                             SizedBox(height: 18),
                             TextFormField(
                               onChanged: controller.onPasswordChanged,

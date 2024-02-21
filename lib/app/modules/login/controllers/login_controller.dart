@@ -11,16 +11,12 @@ class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  var email = ''.obs;
+  
   var password = ''.obs;
   var username = ''.obs;
 
   void onUsernameChanged(String value){
     username.value = value;
-  }
-
-  void onEmailChanged(String value){
-    email.value = value;
   }
 
   void onPasswordChanged(String value){
@@ -45,7 +41,7 @@ class LoginController extends GetxController {
   }
   Future<http.Response> _performLogin() async{
     var apiUrl = 'api/v1/auth/login';
-    var requestBody = {'username': username.value, 'email': email.value, 'password':password.value};
+    var requestBody = {'username': username.value, 'password':password.value};
 
     return await http.post(
       Uri.parse(Api.baseUrl+apiUrl),
