@@ -13,12 +13,11 @@ class InvoiceController extends GetxController {
   var harga = ''.obs;
   var benefits = ''.obs;
   var cardnumber = ''.obs;
-  var exprireddate = ''.obs;
+  var expireddate = ''.obs;
   var payment = ''.obs;
   var membership = ''.obs;
 
   var isFormSubmitted = false.obs;
-  // var selectedDate = ''.obs;
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -33,21 +32,17 @@ class InvoiceController extends GetxController {
     }
   }
 
-  Future<void> selectExpiredDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(21000),
-    );
+  //expired 
+ Future<void> selectExpiredDate() async {
+  final DateTime now = DateTime.now();
+  final DateTime experieddate = now.add(Duration(days: 7)); 
 
-    if (picked != null) {
-      final experieddate = picked.add(Duration(days: 7));
-      final formattedDate = DateFormat('yyyy-MM-dd').format(experieddate);
-      exprireddate.value = formattedDate;
-    }
-  }
+  final formattedDate = DateFormat('yyyy-MM-dd').format(experieddate);
+  expireddate.value = formattedDate;
+}
 
+
+  //ubah tanggal menjadi umur
   RxString calculateAge() {
     if (dateofbirth.value.isNotEmpty) {
       DateTime dob = DateFormat('yyyy-MM-dd').parse(dateofbirth.value);
@@ -63,6 +58,7 @@ class InvoiceController extends GetxController {
     return ''.obs;
   }
 
+  
   void toggleMembership(String membershipValue) {
     membership.value = membershipValue;
     if (membership == "Reguler") {
@@ -89,14 +85,14 @@ class InvoiceController extends GetxController {
     nationality.value = '';
     membership.value = '';
     cardnumber.value = '';
-    exprireddate.value = '';
+    expireddate.value = '';
     harga.value = '';
     benefits.value = '';
   }
 
   void submitForm() {
     print(
-        'Data formulir: $fullname, $placeofbirth, $dateofbirth, $gender, $email, $nationality, $exprireddate, ${membership.value}, ${harga.value}, ${benefits.value}');
+        'Data formulir: $fullname, $placeofbirth, $dateofbirth, $gender, $email, $nationality, $expireddate, ${membership.value}, ${harga.value}, ${benefits.value}');
     isFormSubmitted.value = true;
   }
 }

@@ -26,8 +26,9 @@ class InvoiceView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Nama'),
-                    onChanged: (value) => invoiceController.fullname.value = value,
+                    decoration: InputDecoration(labelText: 'Full Name'),
+                    onChanged: (value) =>
+                        invoiceController.fullname.value = value,
                   ),
                 ],
               ),
@@ -38,7 +39,6 @@ class InvoiceView extends StatelessWidget {
               onChanged: (value) =>
                   invoiceController.placeofbirth.value = value,
             ),
-
             SizedBox(height: 16.0),
             InkWell(
               onTap: () => invoiceController.selectDate(context),
@@ -55,7 +55,6 @@ class InvoiceView extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(height: 16.0),
             Text("Gender"),
             Row(
@@ -86,48 +85,49 @@ class InvoiceView extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Nationality'),
               onChanged: (value) => invoiceController.nationality.value = value,
             ),
+            SizedBox(height: 16.0),
+            Text("Membership"),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                   Obx(() => Radio(
-                            value: 'Reguler',
-                            groupValue:
-                            invoiceController.membership.value,
-                            onChanged: (value) => 
-                            invoiceController.toggleMembership(value!),
-                          )),
-                        Text("Reguler"),
+                    Obx(() => Radio(
+                          value: 'Reguler',
+                          groupValue: invoiceController.membership.value,
+                          onChanged: (value) =>
+                              invoiceController.toggleMembership(value!),
+                        )),
+                    Text("Reguler"),
                     Row(
                       children: [
-                       Obx(() => Radio(
+                        Obx(() => Radio(
                               value: 'Gold',
-                              groupValue:
-                              invoiceController.membership.value,
-                              onChanged: (value) => 
-                              invoiceController.toggleMembership(value!),
-                              )),
+                              groupValue: invoiceController.membership.value,
+                              onChanged: (value) =>
+                                  invoiceController.toggleMembership(value!),
+                            )),
                         Text("Gold"),
-                      ],),
-                     Row(
+                      ],
+                    ),
+                    Row(
                       children: [
                         Obx(() => Radio(
-                            value: 'Platinum',
-                            groupValue:
-                              invoiceController.membership.value,
-                              onChanged: (value) => 
-                              invoiceController.toggleMembership(value!),
-                              )),
+                              value: 'Platinum',
+                              groupValue: invoiceController.membership.value,
+                              onChanged: (value) =>
+                                  invoiceController.toggleMembership(value!),
+                            )),
                         Text("Platinum"),
-                      ],), Row(
+                      ],
+                    ),
+                    Row(
                       children: [
                         Obx(() => Radio(
-                            value: 'VIP',
-                            groupValue:
-                              invoiceController.membership.value,
-                              onChanged: (value) => 
-                              invoiceController.toggleMembership(value!),
+                              value: 'Vip',
+                              groupValue: invoiceController.membership.value,
+                              onChanged: (value) =>
+                                  invoiceController.toggleMembership(value!),
                             )),
                         Text("VIP"),
                       ],
@@ -136,40 +136,43 @@ class InvoiceView extends StatelessWidget {
                 ),
               ],
             ),
-
-             SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             TextFormField(
               decoration: InputDecoration(labelText: 'Card Number'),
-              onChanged: (value) =>
-                  invoiceController.cardnumber.value = value,
+              onChanged: (value) => invoiceController.cardnumber.value = value,
             ),
-
-             SizedBox(height: 16.0),
-            InkWell(
-              onTap: () => invoiceController.selectExpiredDate(context),
-              child: InputDecorator(
-                decoration: InputDecoration(
-                  hintText: 'Pilih Tanggal',
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Expired Date: '),
-                    Obx(() => Text(invoiceController.exprireddate.value)),
-                  ],
+              SizedBox(height: 16.0),
+              InkWell(
+                onTap: () => invoiceController.selectExpiredDate(),
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    hintText: 'Pilih Tanggal',
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Expired Date: '),
+                      Obx(() => Text(invoiceController.expireddate.value)),
+                    ],
+                  ),
                 ),
               ),
-            ),
-
             SizedBox(height: 16.0),
-                    Obx(() =>
-                        Text("Harga Member : ${invoiceController.harga}")
-                        ),
+            Obx(() => Text("Harga Member : ${invoiceController.harga}")),
 
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => Get.to(OutPut()),
-              child: Text('Submit'),
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.red, onPrimary: Colors.white),
+              child: Text(
+                'SUBMIT',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
             ),
             SizedBox(height: 16.0),
             Obx(() {
@@ -184,7 +187,7 @@ class InvoiceView extends StatelessWidget {
             }),
           ],
         ),
-     ),
-);
-}
+      ),
+    );
+  }
 }

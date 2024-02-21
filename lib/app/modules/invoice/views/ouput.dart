@@ -20,7 +20,6 @@ class OutPut extends StatelessWidget {
         child: Card(
           elevation: 4,
           child: Padding(
-
             padding: EdgeInsets.all(16),
             child: ListView(
               children: [
@@ -49,7 +48,7 @@ class OutPut extends StatelessWidget {
                   title: Text('Card Number : ${invoice.cardnumber.value} '),
                 ),
                 ListTile(
-                  title: Text('Expired Date : ${invoice.exprireddate.value} '),
+                  title: Text('Expired Date : ${invoice.expireddate.value} '),
                 ),
                 ListTile(
                   title: Text('Payment : ${invoice.harga.value} '),
