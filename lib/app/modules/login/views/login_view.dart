@@ -122,7 +122,9 @@ class LoginView extends GetView<LoginController> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                     controller.goToRegister();
+                                  },
                                   child: Text(
                                     'Register',
                                     style: TextStyle(

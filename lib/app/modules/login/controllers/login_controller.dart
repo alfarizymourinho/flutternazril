@@ -63,4 +63,9 @@ class LoginController extends GetxController {
     localStorage.setString('token', responseBody['token']);
     localStorage.setString('user', json.encode(responseBody['user']));
 }
+
+void goToRegister() {
+    // Use Get.toNamed to navigate to the register page
+    Get.toNamed('/register');
+  }
 }
